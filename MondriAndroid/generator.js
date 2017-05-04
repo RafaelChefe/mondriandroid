@@ -6,15 +6,9 @@ var rotations = ['rotate-1', 'rotate-2', 'rotate-3'];
 
 // list of active symbols
 
-
 var testIcons = ['#icon-scissors', '#icon-eye', '#icon-font', '#icon-sphere', '#icon-power-cord']
 
-
-
-
-
-
-var article= "15 Emerging Trends to Amp-up Your rocket 3 Web Designs in 2017";
+var article= "2 knives to poke your face and launch a nuke";
 var author = "Alex Walker ";
 var pubdate = "8/5/2017";
 var seed = "aaaaaaaaaaaaaa"; // Extra randomness if you don't like the default graphic
@@ -28,23 +22,18 @@ var iconNames = symbols.map(function(icon){
   return(icon.substring(6, icon.length));
 });
 
-function getIcon(allIcons, title) {
-  var iconFound = "";
+function getIcons(allIcons, title) {
+  var iconsFound = [];
 
   allIcons.forEach(function(icon){
     var regex = new RegExp(icon, 'i');
 
     if (regex.test(title)) {
-      iconFound = icon;
-      return;
+      iconsFound.push("#icon-" + icon);
     }
   });
 
-  if (iconFound !== "") {
-    return iconFound;
-  } else {
-    return allIcons[Math.floor(Math.random() * allIcons.length)];
-  }
+  return iconsFound;
 }
 
 console.log(numbers);
@@ -80,11 +69,14 @@ function dec2bin(dec){ // convert decimal 2 binary
 var decimal = new Array();
 var binary = new Array();
 
-
-
 // RANDOM SYMBOL SELECTION
 // var selectsymbol = symbols[Math.floor(Math.random() * symbols.length)]; // pick one at random
-var selectsymbol = "#icon-" + getIcon(iconNames, title);
+
+var matchedIcons = getIcons(iconNames, title);
+var selectsymbol = ( matchedIcons.length > 0 ? matchedIcons[0] : symbols[Math.floor(Math.random() * symbols.length)] );
+
+console.log(selectsymbol);
+
 var selectsymbol2 = geometric[Math.floor(Math.random() * symbols.length)]; // pick one at random
 var selectsymbol3 = geometric[Math.floor(Math.random() * symbols.length)]; // pick one at random
 
